@@ -1,10 +1,12 @@
 "use client";
-import React, { useState } from 'react'
-import styles from './page.module.css';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import React, { useState } from "react";
+import styles from "./page.module.css";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 const Register = () => {
   const [error, setError] = useState(null);
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -14,8 +16,8 @@ const Register = () => {
     const password = e.target[2].value;
 
     try {
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -24,14 +26,13 @@ const Register = () => {
           email,
           password,
         }),
-
       });
       res.status === 201 && router.push("/dashboard/login?success=Account has been created");
-    } catch (error) {
-      setError(error);
-      console.log(error);
+    } catch (err) {
+      setError(err);
+      console.log(err);
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -65,6 +66,6 @@ const Register = () => {
       </Link>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;

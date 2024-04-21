@@ -3,10 +3,11 @@ import connect from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
-
 export const POST = async (request) => {
   const { name, email, password } = await request.json();
+
   await connect();
+
   const hashedPassword = await bcrypt.hash(password, 5);
 
   const newUser = new User({
@@ -20,8 +21,8 @@ export const POST = async (request) => {
     return new NextResponse("User has been created", {
       status: 201,
     });
-  } catch (error) {
-    return new NextResponse(error.message, {
+  } catch (err) {
+    return new NextResponse(err.message, {
       status: 500,
     });
   }

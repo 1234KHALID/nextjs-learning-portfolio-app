@@ -1,4 +1,4 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -12,6 +12,7 @@ const handler = NextAuth({
       id: "credentials",
       name: "Credentials",
       async authorize(credentials) {
+        //Check if the user exists.
         await connect();
 
         try {
@@ -24,6 +25,7 @@ const handler = NextAuth({
               credentials.password,
               user.password
             );
+
             if (isPasswordCorrect) {
               return user;
             } else {
@@ -32,9 +34,8 @@ const handler = NextAuth({
           } else {
             throw new Error("User not found!");
           }
-
-        } catch (error) {
-          throw new Error(error);
+        } catch (err) {
+          throw new Error(err);
         }
       },
     }),
@@ -50,6 +51,7 @@ const handler = NextAuth({
   pages: {
     error: "/dashboard/login",
   },
+
 });
 
 export { handler as GET, handler as POST };
