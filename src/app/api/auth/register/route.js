@@ -1,4 +1,4 @@
-import User from "@/models/User";
+import User from "@/models/user";
 import connect from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";

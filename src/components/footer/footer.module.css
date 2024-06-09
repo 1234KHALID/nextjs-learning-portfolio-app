@@ -1,21 +1,18 @@
- .container{
+.container {
   height: 50px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.socialmedia{
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  list-style: none;
-}
 
-.social{
+.social {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.icon{
+
+.icon {
   opacity: 0.6;
+  cursor: pointer;
 }
